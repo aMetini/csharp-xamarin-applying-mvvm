@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.ComponentModel;
 using Xamarin.Forms;
+using Roster.Client.Models;
+using System.Collections.ObjectModel;
 
 namespace Roster.Client.ViewModels
 {
@@ -27,11 +27,21 @@ namespace Roster.Client.ViewModels
                 PropertyChanged(_title, new PropertyChangedEventArgs(nameof(Title)));
             }
         }
+
         public Command UpdateApplicationCommand { get; }
 
+        // An ObservableCollection is a dynamic collection of objects of a given type. Objects can be added, removed or be updated with an automatic notification of actions.
+        // When an object is added to or removed from an observable collection, the UI is automatically updated.
+        public ObservableCollection<Person> People { get; }
+
+        // HomeViewModel constructor
         public HomeViewModel()
         {
             UpdateApplicationCommand = new Command(UpdateApplicationCommandExecute);
+            People = new ObservableCollection<Person>();
+            People.Add(new Person { Name = "Delores Feil", Company = "Legros Group"});
+            People.Add(new Person { Name = "Ann Zboncak", Company = "Ledner - Ferry" });
+            People.Add(new Person { Name = "Jaime Lesch", Company = "Herzog and Sons" });
         }
 
         // Private method UpdateApplicationCommandExecute

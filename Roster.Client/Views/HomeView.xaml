@@ -7,9 +7,12 @@
         <Label x:Name="TitleLabel" x:FieldModifier="public" Text="{Binding Title, FallbackValue=Header, Mode=OneWay}" FontSize="Header" HorizontalTextAlignment="Center" VerticalOptions="Start" />
         <!-- PropertyChanged (i.e UpdateApplicationCommand) handler is added here-->
         <Button x:Name="AddPersonButton" x:FieldModifier="public" Text="Update Application" Command="{Binding UpdateApplicationCommand, Mode=OneTime}" />
-        <ListView x:Name="PeopleListView" x:FieldModifier="public" VerticalOptions="FillAndExpand">
+        <!-- Sets/binds the ItemSource property of PeopleListView to the People property of the binding context-->
+        <ListView x:Name="PeopleListView" x:FieldModifier="public" VerticalOptions="FillAndExpand" ItemsSource="{Binding People, Mode=OneWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
+                    <!--Added <TextCell> into DataTemplate.  Added a header using Text and binding value to property Name.  Added footer by using Detail and binding value to property Company-->
+                    <TextCell Text="{Binding Name}" Detail="{Binding Company}"/>    
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

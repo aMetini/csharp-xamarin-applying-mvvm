@@ -3,8 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Roster.Client.Views.HomeView">
     <StackLayout Orientation="Vertical">
+        <!--Binding = data bound. Label on Home Page = bound to Title with fallback font value of Header. Title context can only  be changed one way-->
         <Label x:Name="TitleLabel" x:FieldModifier="public" Text="{Binding Title, FallbackValue=Header, Mode=OneWay}" FontSize="Header" HorizontalTextAlignment="Center" VerticalOptions="Start" />
-        <Button x:Name="AddPersonButton" x:FieldModifier="public" Text="Update Application" />
+        <!-- PropertyChanged (i.e UpdateApplicationCommand) handler is added here-->
+        <Button x:Name="AddPersonButton" x:FieldModifier="public" Text="Update Application" Command="{Binding UpdateApplicationCommand, Mode=OneTime}" />
         <ListView x:Name="PeopleListView" x:FieldModifier="public" VerticalOptions="FillAndExpand">
             <ListView.ItemTemplate>
                 <DataTemplate>
